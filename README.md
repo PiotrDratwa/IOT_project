@@ -75,3 +75,6 @@ Skrypt w **Pythonie** subskrybuje dane z brokera MQTT, zapisuje je w bazie **Inf
 ### Podsumowanie
 
 Projekt umożliwia efektywne zbieranie i przetwarzanie danych, wykorzystując nowoczesne technologie IoT oraz sztuczną inteligencję. Dzięki zastosowaniu **MQTT**, **Docker**, **Python** i **Whisper**, całość systemu jest skalowalna, elastyczna i bezpieczna.
+
+### Autorzy
+Piotr Dratwa i Jakub Kaczmarzewski
