@@ -1,80 +1,82 @@
-# Projekt IoT: Monitorowanie Temperatura i Mowa w Czasie Rzeczywistym
+# **IoT Project: Real-Time Temperature and Speech Monitoring**
 
-Projekt IoT składa się z kilku zintegrowanych modułów, które współdziałają, aby mierzyć, przetwarzać i wyświetlać dane w czasie rzeczywistym. Wykorzystuje technologie takie jak **ESP8266**, **MQTT**, **Docker**, **Python** oraz **Whisper AI**. Poniżej przedstawiamy szczegółowy opis głównych funkcji i technologii użytych w projekcie.
+The IoT project consists of several integrated modules that work together to measure, process, and display data in real-time. It utilizes technologies such as **ESP8266**, **MQTT**, **Docker**, **Python**, and **Whisper AI**. Below is a detailed description of the project's main functions and the technologies used.
 
 ----------
 
-## Główne Funkcje Projektu
+## **Main Project Functions**
 
-### 1. **Pomiar temperatury** 🌡️
+### 1. **Temperature Measurement** 🌡️
 
-Czujnik **DS18B20** podłączony do mikrokontrolera **ESP8266** zbiera dane dotyczące temperatury.
+The **DS18B20** sensor connected to the **ESP8266** microcontroller collects temperature data.
 
--   **Wyświetlanie danych**: Wynik jest wyświetlany w terminalu Arduino oraz przesyłany do brokera MQTT.
+-   **Data Display**: The result is displayed in the Arduino terminal and sent to the MQTT broker.
 
 ----------
 
 ### 2. **Speech-to-Text** 🗣️
 
-Moduł rozpoznawania mowy oparty na **Pythonie** i modelu **Whisper AI** konwertuje dźwięk na tekst.
+The speech recognition module, based on **Python** and the **Whisper AI** model, converts audio into text.
 
--   **Przesyłanie danych**: Przesłany tekst wyświetlany jest w terminalu i wysyłany do brokera MQTT.
--   **Odczyt przez ESP8266**: ESP8266 odbiera dane z brokera, a wynik jest wyświetlany zarówno w terminalu Arduino, jak i na wyświetlaczu LCD podłączonym do płytki.
-
-----------
-
-### 3. **Przetwarzanie Danych** ⚙️
-
-Skrypt w **Pythonie** subskrybuje dane z brokera MQTT, zapisuje je w bazie **InfluxDB**.
-
--   **Wizualizacja zmian**: Zmiany temperatury są wizualizowane na wykresach przy użyciu narzędzia **Grafana**.
+-   **Data Transmission**: The transcribed text is displayed in the terminal and sent to the MQTT broker.
+-   **ESP8266 Reception**: The ESP8266 receives data from the broker, and the result is displayed both in the Arduino terminal and on an LCD screen connected to the board.
 
 ----------
 
-## 🛠️ Technologie
+### 3. **Data Processing** ⚙️
 
-### 1. **ESP8266** z czujnikiem **DS18B20** oraz wyświetlaczem LCD
+A **Python** script subscribes to data from the MQTT broker and stores it in an **InfluxDB** database.
 
--   Mikrokontroler zbiera dane z czujnika temperatury i wyświetla wyniki na ekranie LCD.
+-   **Visualization of Changes**: Temperature changes are visualized using **Grafana** charts.
 
-### 2. **Broker MQTT**
+----------
 
--   Broker MQTT odpowiada za przesyłanie danych pomiędzy urządzeniami.
--   Implementacja mechanizmów autoryzacji (nazwa użytkownika, hasło, TLS) zapewnia bezpieczeństwo komunikacji.
+## **🛠️ Technologies**
+
+### 1. **ESP8266** with **DS18B20** sensor and LCD display
+
+-   The microcontroller collects data from the temperature sensor and displays the results on an LCD screen.
+
+### 2. **MQTT Broker**
+
+-   The MQTT broker is responsible for transmitting data between devices.
+-   Security mechanisms such as authentication (username, password, TLS) ensure secure communication.
 
 ### 3. **Docker**
 
--   **InfluxDB** i **Grafana** działają w kontenerach Dockerowych, co zapewnia łatwą konfigurację i izolację środowisk.
+-   **InfluxDB** and **Grafana** run in Docker containers, ensuring easy setup and environment isolation.
 
 ### 4. **Python**
 
--   **paho-mqtt**: Biblioteka do obsługi MQTT w Pythonie.
--   **influxdb-client**: Używana do zapisu danych do bazy danych InfluxDB.
--   **Whisper**: Model AI do rozpoznawania mowy i konwersji audio na tekst.
+-   **paho-mqtt**: A library for MQTT communication in Python.
+-   **influxdb-client**: Used for writing data to the InfluxDB database.
+-   **Whisper**: An AI model for speech recognition and audio-to-text conversion.
 
 ----------
 
-## ⚙️ Wymagania Systemowe
+## **⚙️ System Requirements**
 
--   **Docker Engine** oraz **Docker Compose**: Niezbędne do uruchomienia kontenerów z InfluxDB i Grafaną.
--   **Python 3.8** lub nowszy: Potrzebny do uruchomienia skryptów w Pythonie i komunikacji z brokerem MQTT.
--   **Arduino IDE**: Do zarządzania mikrokontrolerem ESP8266.
-
-----------
-
-## 🔧 Schemat Działania
-
-1.  **Mikrokontroler ESP8266** zbiera dane z czujnika DS18B20.
-2.  **MQTT Broker** przesyła dane o temperaturze do aplikacji.
-3.  **Model Whisper AI** przetwarza mowę na tekst i wysyła wynik do brokera MQTT.
-4.  **Python** zapisuje dane w bazie **InfluxDB**.
-5.  **Grafana** wizualizuje dane na wykresach, prezentując zmiany temperatury w czasie rzeczywistym.
+-   **Docker Engine** and **Docker Compose**: Required for running InfluxDB and Grafana containers.
+-   **Python 3.8** or later: Needed to run Python scripts and communicate with the MQTT broker.
+-   **Arduino IDE**: For managing the ESP8266 microcontroller.
 
 ----------
 
-### Podsumowanie
+## **🔧 System Workflow**
 
-Projekt umożliwia efektywne zbieranie i przetwarzanie danych, wykorzystując nowoczesne technologie IoT oraz sztuczną inteligencję. Dzięki zastosowaniu **MQTT**, **Docker**, **Python** i **Whisper**, całość systemu jest skalowalna, elastyczna i bezpieczna.
+1.  **ESP8266 microcontroller** collects data from the DS18B20 sensor.
+2.  **MQTT Broker** transmits temperature data to the application.
+3.  **Whisper AI model** processes speech into text and sends the result to the MQTT broker.
+4.  **Python** stores data in the **InfluxDB** database.
+5.  **Grafana** visualizes the data on charts, showing temperature changes in real-time.
 
-### Autorzy
-Piotr Dratwa i Jakub Kaczmarzewski
+----------
+
+### **Summary**
+
+The project enables efficient data collection and processing using modern IoT and artificial intelligence technologies. By leveraging MQTT, Docker, Python, and Whisper AI, the entire system is scalable, flexible, and secure.
+
+----------
+
+### **Authors**  
+Piotr Dratwa & Jakub Kaczmarzewski
